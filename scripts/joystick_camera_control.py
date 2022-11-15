@@ -240,9 +240,13 @@ class JoystickClass:
 if __name__ == "__main__":
     print("Running Joystick Control")
     rospy.init_node('joystick_control')
-    c = JoystickClass()
+    node_handler = JoystickClass()
+    __mode__ = node_handler.MODE.hardware
+    print('\nRunning {} in {}\n'.format("Joystick",__mode__))
+    node_handler.set_mode(__mode__)
+    
     try:
-        c.spin()
+        node_handler.spin()
     except rospy.ROSInterruptException:
         pass
     
